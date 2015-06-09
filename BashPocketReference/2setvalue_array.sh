@@ -23,3 +23,20 @@ echo ${message[@]}
 echo ${#message[*]}
 # previous
 echo ${#message[@]}
+
+#associative arrays
+#换行 http://stackoverflow.com/questions/3372673/continue-output-on-same-line
+echo -n "associative arrays"
+
+for i in {1..10}
+do 
+	echo -n "-"
+done
+echo $'\nhello\nworld'
+echo ""
+data=([joe]=30 [mary]=25)
+echo ${data[test]}
+
+#Special Prompt Strings
+PS1="\d \h $"
+echo PS1
