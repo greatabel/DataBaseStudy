@@ -1,6 +1,6 @@
 LOG_DIR="$Home/Downloads/AbelProject/Transact-SQL/Advanced_Bash-Scripting_Guide/ch2Starting Off With a Sha-Bang"
 mydate="$(date)"
-echo "1 $mydate"
+echo "first $mydate"
 
 
 file=exists_and_writeable.txt
@@ -19,8 +19,15 @@ fi
 # echo $LOG_DIR
 cd $LOG_DIR
 echo "here is :$(pwd)"
-echo "write $mydate " > $file
+echo "1 write $mydate " > $file
 
 { time sleep 1 ; } 2>> $file
+
+mywho="$(who -m)"
+echo $mywho
+echo "\n2 test:$mywho" >> $file
+
+myuptime="$(uptime)"
+echo "\n3 test:$myuptime" >> $file
 
 

@@ -1,5 +1,0 @@
-write 2015年 7月28日 星期二 00时49分55秒 CST 
-
-real	0m1.005s
-user	0m0.001s
-sys	0m0.001s
