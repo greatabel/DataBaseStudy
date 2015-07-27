@@ -14,8 +14,13 @@ if [ ! -w "$file" ] ; then
     exit 1
 fi
 
-
-echo $LOG_DIR
+# 附加内容到文件 http://stackoverflow.com/questions/13181725/bash-append-file-contents-to-the-bottom-of-existing-file
+#  计时的输出转向到文件 http://stackoverflow.com/questions/13356628/is-there-a-way-to-redirect-time-output-to-file-in-linux
+# echo $LOG_DIR
 cd $LOG_DIR
 echo "here is :$(pwd)"
-echo "2 $mydate" > $file
+echo "write $mydate " > $file
+
+{ time sleep 1 ; } 2>> $file
+
+
