@@ -49,6 +49,8 @@ def main_process():
     print(colored('Contents of the Redis sorted set in descending order (with score):', 'red'))
     print(redis_client.zrange(books, 0, -1, withscores=True))
 
+    print(colored('count of the Redis sorted set:', 'blue'))
+    print(redis_client.zcard(books))
 if __name__ == "__main__":
     tic = time.process_time()
     
