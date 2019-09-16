@@ -7,19 +7,15 @@ zset 可以存储粉丝列表，value值是粉丝id，score是关注时间，
 
 #----------------------------#
 
-
+https://stackoverflow.com/questions/54567896/redis-py-attributeerror-int-object-has-no-attribute-items
 
 '''
 
 import time
 from termcolor import colored
-
-import redis
-
- 
+import redis 
 
 # Create a redis client
-
 redis_client = redis.StrictRedis(host='localhost',
                                 port=6379,
                                 db=0)
@@ -45,6 +41,9 @@ def main_process():
     # Print all the players based on the score in ascending order
     print(colored('Contents of the Redis sorted set in ascending order:', 'red'))
     print(redis_client.zrange(books, 0, -1))
+
+    print(colored('Contents of the Redis sorted set in descending order:', 'red'))
+    print(redis_client.zrange(books, 0, -1, desc=True))
 
 
 
