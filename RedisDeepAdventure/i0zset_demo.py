@@ -6,6 +6,7 @@ zset 可以存储粉丝列表，value值是粉丝id，score是关注时间，
 可以对粉丝列表按关注时间排序
 
 #----------------------------#
+https://pythontic.com/database/redis/sorted%20set%20-%20add%20and%20remove%20elements
 
 https://stackoverflow.com/questions/54567896/redis-py-attributeerror-int-object-has-no-attribute-items
 
@@ -42,10 +43,11 @@ def main_process():
     print(colored('Contents of the Redis sorted set in ascending order:', 'red'))
     print(redis_client.zrange(books, 0, -1))
 
-    print(colored('Contents of the Redis sorted set in descending order:', 'red'))
+    print(colored('Contents of the Redis sorted set in descending order:', 'green'))
     print(redis_client.zrange(books, 0, -1, desc=True))
 
-
+    print(colored('Contents of the Redis sorted set in descending order (with score):', 'red'))
+    print(redis_client.zrange(books, 0, -1, withscores=True))
 
 if __name__ == "__main__":
     tic = time.process_time()
