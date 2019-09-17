@@ -1,3 +1,8 @@
+'''
+https://stackoverflow.com/questions/15219858/how-to-store-a-complex-object-in-redis-using-redis-py
+'''
+
+
 import time
 from termcolor import colored
 import redis 
