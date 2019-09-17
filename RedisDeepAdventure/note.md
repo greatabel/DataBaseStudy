@@ -4,6 +4,9 @@
 @ osx上启动、停止命令：
 brew services start redis
 brew services stop redis
+重启：
+brew services restart redis
+
 
 @Redis有5种基础数据结构：
 string
