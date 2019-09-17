@@ -21,3 +21,5 @@ zset
 Redis提供了一个实用的命令INCR，其作用是让当前键值递增，并返回递增后的值
 
 @查看本机redis版本：redis-server --version
+
+@ HyperLogLog的数据结构发明人是Philippe Flajolet, pfadd的pf是名字缩写
