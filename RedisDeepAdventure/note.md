@@ -42,4 +42,18 @@ Redis提供了一个实用的命令INCR，其作用是让当前键值递增，�
 邮箱的垃圾邮件过滤功能也普遍用了布隆过滤器，所以平时某些正常邮件被放入垃圾邮件目录，
 这就是误判
 
+@ redis4.0提供了限流模块：Redis-Cell, 使用漏斗算法
+   只有1条命令: cl.throttle (节流阀的意思)
+
 @
+GEOHash算法：2维度的经纬度映射到一维度的整数，然后对整数做base32编码
+redis做geo查询，内部是zset
+
+@ keys codehole*
+简单粗暴的key：
+没有offset,limit; 遍历算法，复杂度O(n)
+所以提供了scan指令
+
+@
+
+
