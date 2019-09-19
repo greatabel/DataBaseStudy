@@ -8,3 +8,5 @@ http://www.douban.com/doulist/608714/ 豆列中的http://book.douban.com/subject
 http://www.douban.com/doulist/608714/ 豆列的http://book.douban.com/subject/6292203/
 “bash Pocket Reference” 在https://github.com/greatabel/Transact-SQL/tree/master/BashPocketReference 目录中
 
+02RedisDeepAdventure folder:
+Redis 深度历险：核心原理与应用实践/ Redis deep adventure (https://book.douban.com/subject/30386804/)
