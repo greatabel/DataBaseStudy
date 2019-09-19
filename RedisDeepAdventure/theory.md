@@ -28,5 +28,23 @@ Redis用一个单线程对外提供服务，单个节点跑慢一个CPU可以倒
 RESP是Redis的序列化协议(Redis Serializaiton Protocol)
 协议还有大量冗余的回车换行符，优势在于：实现过程异常简单，解析性能极好
 
-@ Redis持久化有2种：一种是快照（全量备份)，一种是AOF日志(增量备份)
+@ Redis持久化有2种：一种是快照（全量备份 snapshotting)，一种是AOF日志(增量备份，即Append Only File持久化)
+
 redis使用操作系统多进程COW (copy on write)机制实现快照持久化
+Redis在持久化时候会调用glibc函数fork一个子进程。子进程不会修改现有内存数据结构，只是遍历读取，然后序列化到磁盘
+父进程继续持续服务客户端请求，然后对内存数据结构不间断修改。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
