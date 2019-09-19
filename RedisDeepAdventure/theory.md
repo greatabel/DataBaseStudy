@@ -51,6 +51,9 @@ redis4 带来：混合持久化。这里AOF日志不再是全量，而是自持�
 multi, 指示事务开始
 exec, 事务执行
 discard 事务丢弃
+客户端执行事务都会结合pipeline 使用
+
+@
 
 
 
