@@ -201,6 +201,74 @@ EXCEPT
 
 select * from p10_view;
 
+
 -- part 3  problem 11
+drop VIEW if exists p11_view;
+
+create view p11_view as
+select p3.pid as pid, count(*) from personskill p3 join person p4 on
+p3.pid = p4.pid 
+where p3.skill  in (
+select distinct skill from worksfor w  inner join personskill p2 
+on w.pid=p2.pid 
+where w.cname = 'IBM'
+)
+group by p3.pid 
+having count(*) > 2;
+
+select p2.pid, name from person p2 inner join p11_view on
+p2.pid = p11_view.pid;
 
 
+-- part 3  problem 12
+select cname from worksfor w2 where salary >= 50000
+group by cname
+having count(*) % 2 != 0
+order by cname;
+
+-- part 3  problem 13
+drop VIEW if exists p13_view2;
+drop VIEW if exists p13_view;
+
+create view p13_view as
+select p3.pid as pid from personskill as p3
+group by p3.pid 
+having count(*)=3;
+
+
+
+create view p13_view2 as
+	select knows.pid1 as pid, count(*)   from knows inner join p13_view
+	on knows.pid2 = p13_view.pid 
+	group by knows.pid1 
+	having count(*) >=2;
+
+select p.pid, p.name from person p inner join p13_view2 on
+p.pid=p13_view2.pid;
+
+
+-- part 3  problem 14
+
+drop VIEW if exists p14_view2;
+
+create view p14_view2 as
+	select t1.pid1, t1.pid2
+	from knows  t1
+	where t1.pid1 < t1.pid2
+	  and exists (select 1 from knows t2
+	              where t1.pid1 = t2.pid2
+	                and t1.pid2 = t2.pid1);
+
+select pid1, pid2 from p14_view2 where pid1=pid2;
+
+
+-- part 3  problem 15
+drop VIEW if exists p15_view;
+
+create view p15_view as
+	select pid1, count(*) as num from knows
+	group by pid1;
+
+select p1.pid1, p2.pid1 from p15_view as p1 inner join p15_view as p2 on
+p1.num = p2.num where p1.pid1 <> p2.pid1
+order by p1.pid1, p2.pid1;
