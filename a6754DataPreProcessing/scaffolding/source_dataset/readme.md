@@ -11,6 +11,8 @@ sqlite3 book.db -separator ',' '.import Book3.csv Book3'
 
 4. 
 Q1:
+https://stackoverflow.com/questions/37073001/adding-an-auto-increment-id-field-to-a-union-all-access-sql-query-result
+
 SELECT ROW_NUMBER() OVER (order by num desc), title, p, pages ,num from 
 (
 select title, publisher as p , pages,  COUNT(*) as num from Book1 b1 
