@@ -1,5 +1,7 @@
 import csv
 import os
+from functools import cmp_to_key
+
 
 def read_csv_file(filename: str):
     with open(filename, encoding='utf-8-sig') as infile:
@@ -14,6 +16,21 @@ def read_csv_file(filename: str):
             row = [item.strip() for item in row]
             yield row
 
+def compare(item1, item2):
+    # sort by isbn15, whichi  this 5th index
+    if int(item1[5]) < int(item2[5]):
+        return -1
+    elif int(item1[5]) > int(item2[5]):
+        return 1
+    else:
+        return 0
+
+#  to merge and sort two list 
+def merge(list1, list2): 
+    final_list = list1 + list2 
+    final_list = sorted(final_list, key=cmp_to_key(compare))
+
+    return(final_list) 
 
 def  main():
     '''
@@ -23,6 +40,7 @@ def  main():
 
     '''
     data_path = os.path.abspath('../data/')
+    out_path = os.path.abspath('../out/')
     book3list = []
     for data_row in read_csv_file(os.path.join(data_path, 'Book3.csv')):
         # print(data_row, '#'*5)
@@ -34,9 +52,9 @@ def  main():
         isbn13 = data_row[6]
         pages = data_row[8]
 
-        book3list.append((id, title, authors, publish_date, publisher, isbn13, pages))
+        book3list.append([id, title, authors, publish_date, publisher, isbn13, pages])
 
-    # print(len(book3list), book3list[0:5])
+    print(len(book3list), book3list[0])
 
     book4list = []
     for data_row in read_csv_file(os.path.join(data_path, 'Book4.csv')):
@@ -49,9 +67,15 @@ def  main():
         isbn13 = data_row[6]
         pages = data_row[9]
 
-        book4list.append((id, title, authors, publish_date, isbn13, pages))
-        
-    # print(len(book4list), book4list[0])
+        book4list.append([id, title, authors, publish_date, publisher, isbn13, pages])
+    print(len(book4list), book4list[0])
+
+    fullbooklist = merge(book3list, book4list)
+    print(len(fullbooklist), fullbooklist[1], '#'*10)
+    with open(os.path.join(out_path, 'FullBookList.csv'), "w", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerows(fullbooklist)
+    
 
 
 if __name__ == "__main__":
