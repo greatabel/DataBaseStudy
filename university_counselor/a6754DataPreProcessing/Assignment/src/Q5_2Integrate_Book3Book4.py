@@ -8,7 +8,7 @@ def read_csv_file(filename: str):
         reader = csv.reader(infile)
 
         # Read first line of the the CSV file.
-        headers = next(reader)
+        # headers = next(reader)
 
         # Read remaining rows from the CSV file.
         for row in reader:
